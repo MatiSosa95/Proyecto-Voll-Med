@@ -1,6 +1,5 @@
 package med.voll.api.Consulta;
 
-import jakarta.validation.ValidationException;
 import med.voll.api.Infra.Errores.ValidacionDeIntegridad;
 import med.voll.api.Medico.IMedicoRepository;
 import med.voll.api.Model.Medico;
@@ -45,7 +44,7 @@ public class AgendaDeConsultaService {
             return medicoRepository.getReferenceById(datos.idMedico());
         }
         if (datos.especialidad()==null){
-            throw new ValidacionDeIntegridad("debe seleciconarse una especialidad")
+            throw new ValidacionDeIntegridad("debe seleciconarse una especialidad");
         }
         return medicoRepository.seleccionarMedicoConEspecialidadEnFecha(datos.especialidad(), datos.fecha());
     }
