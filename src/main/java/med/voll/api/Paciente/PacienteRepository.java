@@ -12,4 +12,8 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     @Query("""
             SELECT p.activo FROM Paciente p WHERE  p.id=:idPaciente""")
     Boolean findActivoById(Long idPaciente);
+
+    @Query("""
+            select p.activo from Paciente p where p.id=.idPaciente""")
+    Boolean findAllByActivoId(Long idPaciente);
 }
