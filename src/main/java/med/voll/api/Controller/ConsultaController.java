@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @ResponseBody
 @RequestMapping("/consultas")
-@Operation(security = { @SecurityRequirement(name = "bearer-key") })
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     @Autowired
