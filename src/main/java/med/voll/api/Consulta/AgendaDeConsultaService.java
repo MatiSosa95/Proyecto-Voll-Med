@@ -1,5 +1,6 @@
 package med.voll.api.Consulta;
 
+import med.voll.api.Consulta.Validaciones.ValidadorCancelamientoDeConsulta;
 import med.voll.api.Consulta.Validaciones.ValidadorDeConsultas;
 import med.voll.api.Infra.Errores.ValidacionDeIntegridad;
 import med.voll.api.Medico.IMedicoRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@SuppressWarnings("all")
 public class AgendaDeConsultaService {
 
     @Autowired
@@ -25,6 +27,9 @@ public class AgendaDeConsultaService {
     @Autowired
     List<ValidadorDeConsultas> validadores; //Esto permite traer todos los validadores que queramos. Y si eliminamos uno
     //no afecta en nada nuestro proyecto.
+
+    @Autowired
+    List<ValidadorCancelamientoDeConsulta> validadoresCancelamiento;
 
     public DatosDetalleConsulta agendar(DatosAgendaConsulta datos){
         if(!pacienteRepository.findById(datos.idPaciente()).isPresent()){
@@ -73,6 +78,6 @@ public class AgendaDeConsultaService {
         validadoresCancelamiento.forEach(v->v.validar(datos));
 
         var consulta= consultaRepository.getReferenceById(datos.idConsulta());
-        consulta.cancelar(datos.motivos());
+        consulta.cancelar(datos.motivo());
     }
 }
