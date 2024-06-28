@@ -1,6 +1,7 @@
 package med.voll.api.Infra.Errores;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,18 @@ public class TratadorDeErrores {
         return ResponseEntity.badRequest().body(errores);
         //Tratamos este error cuando el cliente ingresa un valor nulo en nombre y esas cosas.
         //Esto deberia retornar algun mensaje para que el cliente sepa en que se equivoco
+    }
+
+    @ExceptionHandler(ValidacionDeIntegridad.class)
+    public ResponseEntity ErrorHandlerValidacionesDeIntegridad(Exception e){
+
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity ErrorHandlerValidacionesDeNegocios(Exception e){
+
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     //Record que permite devolverle al cliente la informacion que queremos que vea.

@@ -3,12 +3,14 @@ package med.voll.api.Consulta.Validaciones;
 import jakarta.validation.ValidationException;
 import med.voll.api.Consulta.ConsultaRepository;
 import med.voll.api.Consulta.DatosAgendaConsulta;
+import org.springframework.stereotype.Component;
 
-public class MedicoConConsulta {
+@Component
+public class MedicoConConsulta implements ValidadorDeConsultas{
 
     private ConsultaRepository repository;
 
-    public  void validad(DatosAgendaConsulta datos){
+    public  void validar(DatosAgendaConsulta datos){
         if (datos.idMedico()==null){
             return;
         }

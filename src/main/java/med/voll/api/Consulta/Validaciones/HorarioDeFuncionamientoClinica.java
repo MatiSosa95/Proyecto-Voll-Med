@@ -3,11 +3,13 @@ package med.voll.api.Consulta.Validaciones;
 import jakarta.validation.ValidationException;
 import med.voll.api.Consulta.DatosAgendaConsulta;
 import med.voll.api.Infra.Errores.ValidacionDeIntegridad;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
-public class HorarioDeFuncionamientoClinica {
-    public void validad(DatosAgendaConsulta datos){
+@Component
+public class HorarioDeFuncionamientoClinica implements ValidadorDeConsultas {
+    public void validar(DatosAgendaConsulta datos){
         var domingo= DayOfWeek.SUNDAY.equals(datos.fecha().getDayOfWeek());
         var antesDeApertura= datos.fecha().getHour()<7;
         var despuesDeCierre=datos.fecha().getHour()>19;
