@@ -2,7 +2,6 @@ package med.voll.api.Consulta.Validaciones;
 
 import jakarta.validation.ValidationException;
 import med.voll.api.Consulta.ConsultaRepository;
-import med.voll.api.Consulta.DatosAgendaConsulta;
 import med.voll.api.Consulta.DatosCancelamientoConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +20,7 @@ public class ValidadorHorarioAntecedencia implements ValidadorCancelamientoDeCon
     public void validar(DatosCancelamientoConsulta datos) {
         var consulta= repository.getReferenceById(datos.idConsulta());
         var ahora= LocalDateTime.now();
-        var diferenciaEnHoras= Duration.between(ahora, consulta.getData()).toHours();
+        var diferenciaEnHoras= Duration.between(ahora, consulta.getFecha()).toHours();
 
         if(diferenciaEnHoras<24){
             throw new ValidationException("La consulta solamente puede ser cancelada con antelacion minima de 24 horas");

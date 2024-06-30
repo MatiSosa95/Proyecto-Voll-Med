@@ -33,4 +33,6 @@ public class ConsultaController {
 
         return  ResponseEntity.ok(response);
     }
+
+    //Falta el cancelar consulta
 }

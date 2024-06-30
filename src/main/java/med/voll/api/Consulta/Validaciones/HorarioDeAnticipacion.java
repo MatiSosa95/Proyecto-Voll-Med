@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Component
+@SuppressWarnings("all")
 public class HorarioDeAnticipacion implements ValidadorDeConsultas {
 
     public void validar(DatosAgendaConsulta datos){
